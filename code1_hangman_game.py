@@ -1,39 +1,43 @@
 import random
 import json
 
+# you will understand this code later
 
-def fill(x, xx, z):
-    z = z.split()
-    xx = list(xx)
-    x = list(x)
-    if(len(xx) >= len(x)):
-        for i in range(len(x)):
-            if(xx[i] == x[i]):
-                z[i] = x[i]
+
+def fill(random_word, user_word, output_word):
+    output_word = output_word.split()
+    user_word = list(user_word)  # changing a string into a list
+    random_word = list(random_word)
+    if(len(user_word) >= len(random_word)):
+        for i in range(len(random_word)):
+            if(user_word[i] == random_word[i]):
+                output_word[i] = random_word[i]
     else:
-        for i in range(len(xx)):
-            if(xx[i] == x[i]):
-                z[i] = x[i]
-    z = " ".join(z)
-    return z
+        for i in range(len(user_word)):
+            if(user_word[i] == random_word[i]):
+                output_word[i] = random_word[i]
+    output_word = " ".join(output_word)  # changning of list into a string
+    return output_word
 
 
+# we should open a file before we give it to a vairable
 f = open("dictionary.json")
-data = json.load(f)
+data = json.load(f)  # loading a json file into a variable
 
-x, y = random.choice(list(data.items()))
-z = list(x)
-for i in range(len(x)):
-    if((i != 0) and (i != (len(x) - 1))):
-        z[i] = " _ "
+# taking a random variable and giving key and value to respective variables
+random_word, word_meaning = random.choice(list(data.items()))
+output_word = list(random_word)
+for i in range(len(random_word)):
+    if((i != 0) and (i != (len(random_word) - 1))):
+        output_word[i] = " _ "
 
-z = "".join(z)
-print(z)
+output_word = "".join(output_word)
+print(output_word)
 for i in range(3):
     print(f'you have {3-i} chances only')
     print("")
-    xx = input("enter your guess: ",)
-    if xx == x:
+    user_word = input("enter your guess: ",)
+    if user_word == random_word:
         print("congrats your guess is right")
         print("")
         break
@@ -44,11 +48,11 @@ for i in range(3):
             print("")
             print("you last all your chances. The majic word is ")
 
-            print(f'{x}')
-            print(f'{x} means : {y}')
+            print(f'{random_word}')
+            print(f'{random_word} means : {word_meaning}')
         else:
-            z = fill(x, xx, z)
-            print(z)
+            output_word = fill(random_word, user_word, output_word)
+            print(output_word)
             print("sorry your guess is wrong")
             print("")
 

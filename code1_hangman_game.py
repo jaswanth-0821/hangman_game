@@ -2,8 +2,6 @@ import random
 import json
 
 # you will understand this code later
-
-
 def fill(random_word, user_word, output_word):
     output_word = output_word.split()
     user_word = list(user_word)  # changing a string into a list

@@ -28,7 +28,7 @@ for i in range(len(x)):
         z[i] = " _ "
 
 z = "".join(z)
-print(x, z)
+print(z)
 for i in range(3):
     print(f'you have {3-i} chances only')
     print("")
